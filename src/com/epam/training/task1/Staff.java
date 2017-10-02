@@ -5,7 +5,7 @@ public abstract class Staff {
     private String name;
     private int age;
 
-    Staff(String name, int age) {
+    protected Staff(String name, int age) {
         this.name = name;
         this.age = age;
     }
