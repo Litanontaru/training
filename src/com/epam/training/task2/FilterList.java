@@ -17,6 +17,17 @@ public class FilterList<T> extends ArrayList<T> {
     }
 
     @Override
+    public T remove(int index) {
+        if (index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (predicate.contains(FilterList.this.get(index))) {
+            throw new IllegalArgumentException();
+        }
+        return super.remove(index);
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new FilterIterator();
     }
@@ -24,7 +35,7 @@ public class FilterList<T> extends ArrayList<T> {
 
     private class FilterIterator implements Iterator<T> {
 
-        int cursor;       // index of next element to return
+        int cursor;
         int lastRet = -1;
 
         @Override
@@ -38,7 +49,7 @@ public class FilterList<T> extends ArrayList<T> {
                     return false;
                 }
             }
-            return cursor < FilterList.this.size();
+            return true;
         }
 
         @Override
@@ -47,6 +58,20 @@ public class FilterList<T> extends ArrayList<T> {
                 throw new NoSuchElementException();
 
             return (T) FilterList.this.get(lastRet = cursor++);
+        }
+
+        @Override
+        public void remove() {
+            if (lastRet < 0)
+                throw new IllegalStateException();
+
+            try {
+                FilterList.this.remove(lastRet);
+                cursor = lastRet;
+                lastRet = -1;
+            } catch (IndexOutOfBoundsException ex) {
+                throw new ConcurrentModificationException();
+            }
         }
     }
 }
