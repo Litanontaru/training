@@ -74,4 +74,22 @@ public class FilterList<T> extends ArrayList<T> {
             }
         }
     }
+
+    public <N> List<N> map(IFunction<T, N> function) {
+        List<N> newList = new ArrayList<>();
+
+        for (T value : this) {
+            newList.add(function.action(value));
+        }
+
+        return newList;
+    }
+
+    public T reduce(T identityValue, BiFunction<T> function) {
+        for (T value : this) {
+            identityValue = function.apply(identityValue, value);
+        }
+        return identityValue;
+    }
+
 }

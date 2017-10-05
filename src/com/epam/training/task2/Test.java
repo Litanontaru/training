@@ -18,6 +18,22 @@ public class Test {
         System.out.print("All Elements after trying to add element from predicate: ");
         printAllElements(filterList);
 
+        System.out.println(filterList.map(new IFunction<Integer, Integer>() {
+            @Override
+            public Integer action(Integer integer) {
+                return integer*2;
+            }
+        }));
+
+
+        System.out.println(filterList.reduce(0, new BiFunction<Integer>() {
+            @Override
+            public Integer apply(Integer o1, Integer o2) {
+                return o1+o2;
+            }
+        }));
+
+
 
     }
 
