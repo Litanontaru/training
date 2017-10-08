@@ -22,7 +22,7 @@ public class FilterList<T> extends ArrayList<T> {
             throw new IndexOutOfBoundsException();
         }
         if (predicate.contains(FilterList.this.get(index))) {
-            throw new IllegalArgumentException();
+            return FilterList.this.get(index);
         }
         return super.remove(index);
     }
