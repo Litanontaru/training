@@ -56,8 +56,9 @@ public class FilterList<T> extends ArrayList<T> {
         public T next() {
             if (cursor >= FilterList.this.size())
                 throw new NoSuchElementException();
-
-            return (T) FilterList.this.get(lastRet = cursor++);
+            lastRet = cursor;
+            ++cursor;
+            return (T) FilterList.this.get(lastRet);
         }
 
         @Override
