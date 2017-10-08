@@ -6,7 +6,7 @@ public class Test {
 
     public static void main(String[] args) {
         List<Integer> integers = Arrays.asList(2, 6, 5, 8, 9, 10, 7);
-        List<Integer> predicate = Arrays.asList(6, 7);
+        List<Integer> predicate = Arrays.asList(6, 7, 110);
 
         FilterList<Integer> filterList = new FilterList<>(integers, predicate);
 
@@ -15,13 +15,17 @@ public class Test {
         System.out.print("Elements in filterList by iterator: ");
         printFilterElements(filterList);
         filterList.add(6);
+        filterList.add(110);
+        System.out.print("All Elements after trying to add element from predicate: ");
+        printAllElements(filterList);
+        filterList.remove(5);
         System.out.print("All Elements after trying to add element from predicate: ");
         printAllElements(filterList);
 
         System.out.println(filterList.map(new IFunction<Integer, Integer>() {
             @Override
             public Integer action(Integer integer) {
-                return integer*2;
+                return integer * 2;
             }
         }));
 
@@ -29,10 +33,9 @@ public class Test {
         System.out.println(filterList.reduce(0, new BiFunction<Integer>() {
             @Override
             public Integer apply(Integer o1, Integer o2) {
-                return o1+o2;
+                return o1 + o2;
             }
         }));
-
 
 
     }
