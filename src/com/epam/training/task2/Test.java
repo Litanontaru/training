@@ -19,6 +19,7 @@ public class Test {
         System.out.print("All Elements after trying to add element from predicate: ");
         printAllElements(filterList);
         filterList.remove(5);
+        filterList.remove(2);
         System.out.print("All Elements after trying to add element from predicate: ");
         printAllElements(filterList);
 
