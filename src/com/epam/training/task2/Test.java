@@ -19,8 +19,19 @@ public class Test {
         System.out.print("All Elements after trying to add element from predicate: ");
         printAllElements(filterList);
         filterList.remove(5);
-        filterList.remove(2);
-        System.out.print("All Elements after trying to add element from predicate: ");
+        filterList.remove(1);
+        System.out.print("All Elements after trying to remove element from predicate: ");
+        printAllElements(filterList);
+
+        Iterator<Integer> it = filterList.iterator();
+        while (it.hasNext()) {
+            int value = it.next();
+            if (value == 8 || value == 6) {
+                it.remove();
+            }
+        }
+
+        System.out.print("All Elements after trying to remove element from predicate: ");
         printAllElements(filterList);
 
         System.out.println(filterList.map(new IFunction<Integer, Integer>() {
