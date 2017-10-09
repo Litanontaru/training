@@ -80,7 +80,7 @@ public class Test {
     private static Map<String, String> getAuthorsAndTheirBooks(List<Book> books) {
         return books.stream()
                 .flatMap(book -> book.getAuthors().stream().map(author -> new Pair<>(author, book)))
-                .collect(Collectors.toMap(pair -> pair.getKey().getName(), x -> x.getValue().getName(), (k, m) -> k + ";" + m));
+                .collect(Collectors.toMap(pair -> pair.getKey().getName(), pair -> pair.getValue().getName(), (k, m) -> k + ";" + m));
     }
 
 
