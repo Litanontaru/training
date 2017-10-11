@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void test(){
         List<Author> authors = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -26,7 +26,6 @@ public class Test {
         System.out.println("Names of books and their \"ages\": " + getNameBooks(books));
         System.out.println("Authors who wrote books in collaboration: " + getAuthorsWhoWroteBooksInCollaboration(books));
         System.out.println("Authors and their books: " + getAuthorsAndTheirBooks(books));
-
     }
 
     private static OptionalDouble getAverageAgeAuthors(List<Author> authors) {
