@@ -1,4 +1,4 @@
-package com.epam.training.task4.second;
+package com.epam.training.task4.lambda;
 
 import javafx.util.Pair;
 
