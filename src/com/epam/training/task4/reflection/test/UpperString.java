@@ -2,11 +2,10 @@ package com.epam.training.task4.reflection.test;
 
 import com.epam.training.task4.reflection.cache.Cache;
 import com.epam.training.task4.reflection.cache.InjectCache;
-import com.epam.training.task4.reflection.cache.TypeCache;
 
 public class UpperString {
 
-    @InjectCache(name = TypeCache.UPPER_CASE)
+    @InjectCache(name = "UPPER_CASE")
     private Cache<Integer, String> cache2;
 
     public String get(Integer key) {

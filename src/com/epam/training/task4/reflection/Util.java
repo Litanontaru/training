@@ -2,7 +2,6 @@ package com.epam.training.task4.reflection;
 
 import com.epam.training.task4.reflection.cache.Cache;
 import com.epam.training.task4.reflection.cache.CacheDeclaration;
-import com.epam.training.task4.reflection.cache.TypeCache;
 
 import java.io.File;
 import java.net.URL;
@@ -11,8 +10,8 @@ import java.util.Map;
 
 public class Util {
 
-    public static Map<TypeCache, Cache> loadClasses(String packageName) throws ReflectionException, ClassNotFoundException, IllegalAccessException {
-        Map<TypeCache, Cache> cacheMap = new HashMap<>();
+    public static Map<String, Cache> loadClasses(String packageName) throws ReflectionException, ClassNotFoundException, IllegalAccessException {
+        Map<String, Cache> cacheMap = new HashMap<>();
         try {
             URL resource = Thread.currentThread()
                     .getContextClassLoader()

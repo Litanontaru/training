@@ -2,10 +2,9 @@ package com.epam.training.task4.reflection.cache.implementation;
 
 import com.epam.training.task4.reflection.cache.Cache;
 import com.epam.training.task4.reflection.cache.CacheDeclaration;
-import com.epam.training.task4.reflection.cache.TypeCache;
 
 
-@CacheDeclaration(name = TypeCache.LOWER_CASE)
+@CacheDeclaration(name = "LOWER_CASE")
 public class CacheLowerCaseValue extends Base implements Cache<Integer, String> {
 
     public CacheLowerCaseValue(){

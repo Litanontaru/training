@@ -3,7 +3,6 @@ package com.epam.training.task4.reflection;
 
 import com.epam.training.task4.reflection.cache.Cache;
 import com.epam.training.task4.reflection.cache.InjectCache;
-import com.epam.training.task4.reflection.cache.TypeCache;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -11,7 +10,7 @@ import java.util.*;
 public class Injector {
 
 
-    public static <T> void inject(T instance, final Map<TypeCache, Cache> classes) throws ReflectionException {
+    public static <T> void inject(T instance, final Map<String, Cache> classes) throws ReflectionException {
         Class clazz = instance.getClass();
 
         List<Field> fields = new ArrayList<>();

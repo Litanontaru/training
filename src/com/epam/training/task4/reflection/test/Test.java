@@ -4,7 +4,6 @@ import com.epam.training.task4.reflection.ReflectionException;
 import com.epam.training.task4.reflection.Injector;
 import com.epam.training.task4.reflection.Util;
 import com.epam.training.task4.reflection.cache.Cache;
-import com.epam.training.task4.reflection.cache.TypeCache;
 
 import java.util.Map;
 
@@ -13,7 +12,7 @@ public class Test {
 
     public static void test() {
         try {
-            final Map<TypeCache, Cache> classes
+            final Map<String, Cache> classes
                     = Util.loadClasses("com.epam.training.task4.reflection.cache.implementation");
 
             ChangerString changerString = new ChangerString();
