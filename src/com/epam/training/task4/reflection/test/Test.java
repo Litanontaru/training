@@ -36,7 +36,7 @@ public class Test {
 
             System.out.println(inheritor.get(1));
             System.out.println(inheritor.get(2));
-        } catch (InjectException e) {
+        } catch (InjectException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
