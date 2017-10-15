@@ -18,9 +18,7 @@ public class Injector {
         Class clazz = instance.getClass();
 
         List<Field> fields = new ArrayList<>();
-        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
-        fields.addAll(Arrays.asList(clazz.getFields()));
-        fields.addAll(getPrivateFieldsFromSuperclasses(clazz));
+        fields.addAll(getAllFieldsIncludesSuperclasses(clazz));
 
         for (Field field : fields) {
             try {
@@ -65,12 +63,12 @@ public class Injector {
 
 
 
-    private static List<Field> getPrivateFieldsFromSuperclasses(Class instance) {
+    private static List<Field> getAllFieldsIncludesSuperclasses(Class instance) {
         List<Field> fields = new ArrayList<>();
         fields.addAll(Arrays.asList(instance.getDeclaredFields()));
         Class superClass = instance.getSuperclass();
         if (superClass != null) {
-            fields.addAll(getPrivateFieldsFromSuperclasses(superClass));
+            fields.addAll(getAllFieldsIncludesSuperclasses(superClass));
         }
         return fields;
     }
