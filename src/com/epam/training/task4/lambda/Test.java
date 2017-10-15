@@ -84,88 +84,88 @@ public class Test {
 
 
     private static void fillAuthorsAndBooksList(List<Author> authors, List<Book> books) {
-        Author author1 = new Author(
+        Author authorBridge = new Author(
                 "Bridge"
                 , LocalDate.of(1889, Month.SEPTEMBER, 11)
                 , LocalDate.of(1974, Month.MAY, 9)
                 , Gender.FEMALE
         );
-        authors.add(author1);
+        authors.add(authorBridge);
 
-        Author author2 = new Author(
+        Author authorAdams = new Author(
                 "Adams"
                 , LocalDate.of(1920, Month.MAY, 9)
                 , LocalDate.of(2016, Month.DECEMBER, 24)
                 , Gender.MALE
         );
-        authors.add(author2);
+        authors.add(authorAdams);
 
-        Author author3 = new Author(
+        Author authorMay = new Author(
                 "May"
                 , LocalDate.of(1950, Month.JUNE, 17)
                 , null
                 , Gender.MALE
         );
-        authors.add(author3);
+        authors.add(authorMay);
 
-        Author author4 = new Author(
+        Author authorBoosh = new Author(
                 "Boosh"
                 , LocalDate.of(1970, Month.DECEMBER, 19)
                 , null
                 , Gender.MALE
         );
-        authors.add(author4);
+        authors.add(authorBoosh);
 
-        Author author5 = new Author(
+        Author authorQwers = new Author(
                 "Qwers"
                 , LocalDate.of(1990, Month.MAY, 11)
                 , null
                 , Gender.FEMALE
         );
-        authors.add(author5);
+        authors.add(authorQwers);
 
-        Author author6 = new Author(
+        Author authorGroh = new Author(
                 "Groh"
                 , LocalDate.of(1950, Month.MAY, 29)
                 , null
                 , Gender.MALE
         );
-        authors.add(author6);
+        authors.add(authorGroh);
 
         Book book1 = new Book(
                 "Bloch"
                 , LocalDate.of(1940, Month.AUGUST, 17)
-                , new ArrayList<>(Arrays.asList(author1, author2))
+                , new ArrayList<>(Arrays.asList(authorBridge, authorAdams))
         );
         books.add(book1);
 
-        Book book2 = new Book(
+        Book bookHouse = new Book(
                 "House"
                 , LocalDate.of(1950, Month.JUNE, 15)
-                , new ArrayList<>(Arrays.asList(author1))
+                , new ArrayList<>(Arrays.asList(authorBridge))
         );
-        books.add(book2);
+        books.add(bookHouse);
 
-        Book book3 = new Book(
+        Book bookTable = new Book(
                 "Table"
                 , LocalDate.of(1955, Month.SEPTEMBER, 1)
-                , new ArrayList<>(Arrays.asList(author2, author3))
+                , new ArrayList<>(Arrays.asList(authorAdams, authorMay))
         );
-        books.add(book3);
+        books.add(bookTable);
 
-        Book book4 = new Book(
+        Book bookApple = new Book(
                 "Apple"
                 , LocalDate.of(2000, Month.AUGUST, 17)
-                , new ArrayList<>(Arrays.asList(author5, author6))
+                , new ArrayList<>(Arrays.asList(authorQwers, authorGroh))
         );
-        books.add(book4);
+        books.add(bookApple);
 
-        Book book5 = new Book(
+        Book bookCake = new Book(
                 "Cake"
                 , LocalDate.of(2005, Month.APRIL, 1)
-                , new ArrayList<>(Arrays.asList(author4))
+                , new ArrayList<>(Arrays.asList(authorBoosh))
         );
-        books.add(book5);
+        books.add(bookCake);
 
     }
 }
