@@ -12,9 +12,8 @@ import java.util.*;
 
 public class Injector {
 
-    private static Map<TypeCache, Class> classes = loadClasses("com.epam.training.task4.reflection.cache.implementation");
 
-    public static <T> void inject(T instance) throws InjectException {
+    public static <T> void inject(T instance,final Map<TypeCache, Class> classes) throws InjectException {
         Class clazz = instance.getClass();
 
         List<Field> fields = new ArrayList<>();
@@ -39,30 +38,6 @@ public class Injector {
 
 
     }
-
-    private static Map<TypeCache, Class> loadClasses(String packageName) {
-        URL resource = Thread.currentThread()
-                .getContextClassLoader()
-                .getResource(packageName.replace('.', '/'));
-        File directory = new File(resource.getFile());
-        Map<TypeCache, Class> maps = new HashMap<>();
-
-        for (File file : directory.listFiles((dir, name) -> name.endsWith(".class"))) {
-            try {
-                String subName = file.getName().substring(0, file.getName().indexOf(".class"));
-                Class cacheClass = Class.forName(packageName + "." + subName);
-                CacheDeclaration cacheDeclaration = (CacheDeclaration) cacheClass.getDeclaredAnnotation(CacheDeclaration.class);
-                if (cacheDeclaration == null) {
-                    continue;
-                }
-                maps.put(cacheDeclaration.name(), cacheClass);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return maps;
-    }
-
 
     private static List<Field> getAllFieldsIncludesSuperclasses(Class instance) {
         List<Field> fields = new ArrayList<>();

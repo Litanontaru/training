@@ -2,18 +2,21 @@ package com.epam.training.task4.reflection.test;
 
 import com.epam.training.task4.reflection.InjectException;
 import com.epam.training.task4.reflection.Injector;
+import com.epam.training.task4.reflection.Util;
+import com.epam.training.task4.reflection.cache.TypeCache;
+
+import java.util.Map;
 
 
 public class Test {
 
     public static void test() {
-
-
         try {
-
+            final Map<TypeCache, Class> classes
+                    = Util.loadClasses("com.epam.training.task4.reflection.cache.implementation");
 
             ChangerString changerString = new ChangerString();
-            Injector.inject(changerString);
+            Injector.inject(changerString, classes);
 
             changerString.put(1, "text in lower case.");
             changerString.put(2, "reverse");
@@ -24,7 +27,7 @@ public class Test {
 
 
             Inheritor inheritor = new Inheritor();
-            Injector.inject(inheritor);
+            Injector.inject(inheritor, classes);
 
             System.out.println();
             System.out.println("Inject upperCache:");
