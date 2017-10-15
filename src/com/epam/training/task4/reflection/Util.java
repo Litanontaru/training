@@ -16,11 +16,21 @@ public class Util {
             URL resource = Thread.currentThread()
                     .getContextClassLoader()
                     .getResource(packageName.replace('.', '/'));
+            if (resource == null) {
+                throw new ReflectionException("Check package name");
+            }
             File directory = new File(resource.getFile());
 
+            final String typeOfFile = ".class";
 
-            for (File file : directory.listFiles((dir, name) -> name.endsWith(".class"))) {
-                String subName = file.getName().substring(0, file.getName().indexOf(".class"));
+            File[] files = directory.listFiles((dir, name) -> name.endsWith(typeOfFile));
+
+            if (files == null) {
+                throw new ReflectionException("Files not found");
+            }
+
+            for (File file : files) {
+                String subName = file.getName().substring(0, file.getName().indexOf(typeOfFile));
                 Class cacheClass = Class.forName(packageName + "." + subName);
                 CacheDeclaration cacheDeclaration = (CacheDeclaration) cacheClass.getDeclaredAnnotation(CacheDeclaration.class);
                 if (cacheDeclaration == null) {
