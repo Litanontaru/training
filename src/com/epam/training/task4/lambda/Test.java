@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Test {
 
-    public static void test(){
+    public static void test() {
         List<Author> authors = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -55,9 +55,10 @@ public class Test {
                 .map(book -> book.getName() + "-" + Period.between(book.getDateOfRelease(), LocalDate.now()).getYears() + " ")
                 .forEach(System.out::print);
         System.out.println();*/
+        final LocalDate currentDate = LocalDate.now();
 
         return books.stream()
-                .collect(Collectors.toMap(Book::getName, book -> Period.between(book.getDateOfRelease(), LocalDate.now()).getYears()));
+                .collect(Collectors.toMap(Book::getName, book -> Period.between(book.getDateOfRelease(), currentDate).getYears()));
     }
 
     private static Set<Author> getAuthorsWhoWroteBooksInCollaboration(List<Book> books) {
