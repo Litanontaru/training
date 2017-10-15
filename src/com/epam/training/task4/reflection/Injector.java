@@ -14,25 +14,27 @@ public class Injector {
 
     private static Map<TypeCache, Class> classes = loadClasses("com.epam.training.task4.reflection.cache.implementation");
 
-    public static <T> void inject(T instance){
+    public static <T> void inject(T instance) throws InjectException {
         Class clazz = instance.getClass();
 
         List<Field> fields = new ArrayList<>();
         fields.addAll(getAllFieldsIncludesSuperclasses(clazz));
 
-        for (Field field : fields) {
-            try {
+        try {
+            for (Field field : fields) {
                 InjectCache injectCache = field.getDeclaredAnnotation(InjectCache.class);
                 if (injectCache == null) {
                     continue;
                 }
                 Class cacheClass = classes.get(injectCache.name());
-                Object cache =  cacheClass.newInstance();
+                Object cache = cacheClass.newInstance();
                 field.setAccessible(true);
                 field.set(instance, cache);
-            } catch (IllegalAccessException | InstantiationException e) {
-                e.printStackTrace();
             }
+        } catch (IllegalAccessException e) {
+            throw new InjectException("Error creating instance of class or setting field",e);
+        } catch (InstantiationException e) {
+            throw new InjectException("Error creating instance of class",e);
         }
 
 
@@ -60,7 +62,6 @@ public class Injector {
         }
         return maps;
     }
-
 
 
     private static List<Field> getAllFieldsIncludesSuperclasses(Class instance) {
