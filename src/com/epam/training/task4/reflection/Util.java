@@ -1,5 +1,6 @@
 package com.epam.training.task4.reflection;
 
+import com.epam.training.task4.reflection.cache.Cache;
 import com.epam.training.task4.reflection.cache.CacheDeclaration;
 import com.epam.training.task4.reflection.cache.TypeCache;
 
@@ -10,23 +11,30 @@ import java.util.Map;
 
 public class Util {
 
-    public static Map<TypeCache, Class> loadClasses(String packageName) throws ClassNotFoundException {
-        URL resource = Thread.currentThread()
-                .getContextClassLoader()
-                .getResource(packageName.replace('.', '/'));
-        File directory = new File(resource.getFile());
-        Map<TypeCache, Class> maps = new HashMap<>();
+    public static Map<TypeCache, Cache> loadClasses(String packageName) throws ReflectionException, ClassNotFoundException, IllegalAccessException {
+        Map<TypeCache, Cache> cacheMap = new HashMap<>();
+        try {
+            URL resource = Thread.currentThread()
+                    .getContextClassLoader()
+                    .getResource(packageName.replace('.', '/'));
+            File directory = new File(resource.getFile());
 
-        for (File file : directory.listFiles((dir, name) -> name.endsWith(".class"))) {
+
+            for (File file : directory.listFiles((dir, name) -> name.endsWith(".class"))) {
                 String subName = file.getName().substring(0, file.getName().indexOf(".class"));
                 Class cacheClass = Class.forName(packageName + "." + subName);
                 CacheDeclaration cacheDeclaration = (CacheDeclaration) cacheClass.getDeclaredAnnotation(CacheDeclaration.class);
                 if (cacheDeclaration == null) {
                     continue;
                 }
-                maps.put(cacheDeclaration.name(), cacheClass);
+                cacheMap.put(cacheDeclaration.name(), (Cache) cacheClass.newInstance());
 
+            }
+        } catch (InstantiationException e) {
+            throw new ReflectionException("Error creating instance of class", e);
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException("Check package name", e);
         }
-        return maps;
+        return cacheMap;
     }
 }
