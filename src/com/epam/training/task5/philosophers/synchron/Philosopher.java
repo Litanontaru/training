@@ -1,7 +1,5 @@
 package com.epam.training.task5.philosophers.synchron;
 
-import com.epam.training.task5.philosophers.PositionOfPhilosopher;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Philosopher implements Runnable {
