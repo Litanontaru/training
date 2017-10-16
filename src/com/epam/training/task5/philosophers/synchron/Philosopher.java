@@ -25,11 +25,7 @@ public class Philosopher implements Runnable {
             while (TOTAL_NUMBERS_ITERATION.decrementAndGet() > 0) {
                 synchronized (leftFork) {
                     synchronized (rightFork) {
-                        takeLeftFork(leftFork);
-                        takeRightFork(rightFork);
                         eat();
-                        put(rightFork);
-                        put(leftFork);
                     }
                 }
                 think();
@@ -40,28 +36,11 @@ public class Philosopher implements Runnable {
         System.out.format("Philosopher %d ate \n", number);
     }
 
-    private void takeLeftFork(Fork fork){
-        while (fork.getPositionOfPhilosopher() == PositionOfPhilosopher.LEFT) {
-            continue;
-        }
-        fork.setPositionOfPhilosopher(PositionOfPhilosopher.RIGHT);
-    }
-
-    private void takeRightFork(Fork fork){
-        while (fork.getPositionOfPhilosopher() == PositionOfPhilosopher.RIGHT) {
-            continue;
-        }
-        fork.setPositionOfPhilosopher(PositionOfPhilosopher.LEFT);
-    }
-
     private void eat() throws InterruptedException {
         System.out.format("Philosopher %d eating \n", number);
         //Thread.sleep(10);
     }
 
-    private void put(Fork fork) {
-        fork.setPositionOfPhilosopher(null);
-    }
 
     private void think() throws InterruptedException {
         System.out.format("Philosopher %d thinking \n", number);
