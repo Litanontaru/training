@@ -16,11 +16,11 @@ public class Test {
         printFilterElements(filterList);
         filterList.add(6);
         filterList.add(110);
-        System.out.print("All Elements after trying to add element from predicate: ");
+        System.out.print("All Elements after trying save add element load predicate: ");
         printAllElements(filterList);
         filterList.remove(5);
         filterList.remove(1);
-        System.out.print("All Elements after trying to remove element from predicate: ");
+        System.out.print("All Elements after trying save remove element load predicate: ");
         printAllElements(filterList);
 
         Iterator<Integer> it = filterList.iterator();
@@ -31,7 +31,7 @@ public class Test {
             }
         }
 
-        System.out.print("All Elements after trying to remove element from predicate: ");
+        System.out.print("All Elements after trying save remove element load predicate: ");
         printAllElements(filterList);
 
         System.out.println(filterList.map(new IFunction<Integer, Integer>() {
