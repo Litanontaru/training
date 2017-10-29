@@ -17,7 +17,7 @@ public class BankUser implements Runnable {
                 while (bank.hasMoney()) {
                     bank.getMoney(5);
                 }
-
+            //нарушение JCC - не хватает пробела после "}"
             }catch (ImpossibleOperationException e) {
                 System.out.println(e.getMessage());
             }

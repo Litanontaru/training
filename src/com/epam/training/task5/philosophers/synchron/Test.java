@@ -24,5 +24,6 @@ public class Test {
         executor.execute(philosopher3);
         executor.execute(philosopher4);
         executor.execute(philosopher5);
+        //executor было бы неплохо закрыть - java.util.concurrent.ExecutorService.shutdown()
     }
 }

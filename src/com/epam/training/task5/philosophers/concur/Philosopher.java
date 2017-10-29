@@ -25,6 +25,9 @@ public class Philosopher implements Runnable {
                 leftFork.lock();
                 rightFork.lock();
                 eat();
+                //Существует строгая практика делать unlock в секции finally,
+                //иначе при выпадении Error или Exception lock не будет отпушени
+                //и система войдёт в неконсистентное состояние
                 rightFork.unlock();
                 leftFork.unlock();
                 think();
